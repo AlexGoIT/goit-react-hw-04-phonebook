@@ -36,7 +36,7 @@ export default class App extends Component {
   componentDidUpdate(_, prevState) {
     const { contacts } = this.state;
 
-    if (prevState.contacts !== contacts) {
+    if (prevState.contacts.length !== contacts.length) {
       lsAPI.setItems(KEY, contacts);
     }
   }
