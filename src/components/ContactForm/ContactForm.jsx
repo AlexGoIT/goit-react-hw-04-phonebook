@@ -24,9 +24,7 @@ const ContactForm = ({ onAddContact }) => {
     });
   };
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-
+  const handleChange = ({ target: { name, value } }) => {
     setState({ [name]: value });
   };
 
