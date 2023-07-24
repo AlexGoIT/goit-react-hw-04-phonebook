@@ -28,7 +28,7 @@ export default class App extends Component {
   componentDidMount() {
     const contacts = lsAPI.getItems(KEY);
 
-    if (contacts) {
+    if (contacts.length > 0) {
       this.setState({ contacts });
     }
   }
