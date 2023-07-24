@@ -67,8 +67,8 @@ export default class App extends Component {
   };
 
   // Add filter
-  handleFilter = e => {
-    this.setState({ filter: e.target.value });
+  handleFilter = ({ target: { value } }) => {
+    this.setState({ filter: value });
   };
 
   // Filter
