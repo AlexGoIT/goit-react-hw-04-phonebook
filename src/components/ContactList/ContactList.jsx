@@ -6,10 +6,9 @@ const ContactList = ({ contacts, onDeleteContact }) => {
   return (
     <List>
       {contacts.map(contact => {
-        const { id } = contact;
         return (
           <ContactItem
-            key={id}
+            key={contact.id}
             contact={contact}
             onDeleteContact={onDeleteContact}
           />

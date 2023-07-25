@@ -12,7 +12,7 @@ import Filter from './Filter';
 const lsAPI = new LocalStorageAPI();
 const KEY = 'phonebook-contacts';
 
-document.title = 'HW-3 Phonebook';
+window.document.title = 'HW-4 Phonebook';
 
 export default class App extends Component {
   state = {
@@ -67,8 +67,8 @@ export default class App extends Component {
   };
 
   // Add filter
-  handleFilter = e => {
-    this.setState({ filter: e.target.value });
+  handleFilter = ({ target: { value } }) => {
+    this.setState({ filter: value });
   };
 
   // Filter
