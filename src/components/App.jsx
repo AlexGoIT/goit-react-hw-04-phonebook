@@ -69,10 +69,7 @@ const App = () => {
       >
         Contacts
       </Typography>
-      <Filter
-        onFilter={({ target: { value } }) => setFilter(value)}
-        filter={filter}
-      />
+      <Filter onFilter={e => setFilter(e.target.value)} filter={filter} />
       <ContactList
         contacts={contactFilter(contacts)}
         onDeleteContact={handleDeleteContact}
