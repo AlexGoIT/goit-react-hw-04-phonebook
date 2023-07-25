@@ -8,27 +8,36 @@ import Button from '@mui/material/Button';
 import { Form } from './ContactForm.styled';
 
 const ContactForm = ({ onAddContact }) => {
-  const [state, setState] = useState('');
+  // const [state, setState] = useState('');
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    const { name, number } = state;
     const id = nanoid(5);
-
     onAddContact({ id, name, number });
 
-    setState({
-      name: '',
-      number: '',
-    });
+    setName('');
+    setNumber('');
   };
 
   const handleChange = ({ target: { name, value } }) => {
-    setState({ [name]: value });
-  };
+    switch (name) {
+      case 'name': {
+        setName(value);
+        break;
+      }
 
-  const { name, number } = state;
+      case 'number': {
+        setNumber(value);
+        break;
+      }
+
+      default:
+        return;
+    }
+  };
 
   return (
     <Form onSubmit={handleSubmit}>
