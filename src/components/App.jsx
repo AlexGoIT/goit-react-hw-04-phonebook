@@ -12,7 +12,7 @@ import Filter from './Filter';
 const lsAPI = new LocalStorageAPI();
 const KEY = 'phonebook-contacts';
 
-document.title = 'HW-3 Phonebook';
+window.document.title = 'HW-4 Phonebook';
 
 export default class App extends Component {
   state = {
