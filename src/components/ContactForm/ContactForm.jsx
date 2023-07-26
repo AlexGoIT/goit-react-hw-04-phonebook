@@ -8,7 +8,6 @@ import Button from '@mui/material/Button';
 import { Form } from './ContactForm.styled';
 
 const ContactForm = ({ onAddContact }) => {
-  // const [state, setState] = useState('');
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
