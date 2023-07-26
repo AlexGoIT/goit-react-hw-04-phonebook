@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useReducer, useState, useEffect } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Container from '@mui/material/Container';
 
@@ -7,7 +7,7 @@ import ContactList from './ContactList';
 import Filter from './Filter';
 
 import { Title, ListTitle } from './App.styled';
-import useLocalStorage from 'hooks/useLocalStorage';
+// import useLocalStorage from 'hooks/useLocalStorage';
 
 window.document.title = 'HW-4 Phonebook';
 
@@ -19,9 +19,40 @@ const defaultContacts = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
+const initContactList = () => {
+  const contacts = window.localStorage.getItem(KEY);
+  if (contacts) {
+    return JSON.parse(contacts);
+  }
+  return defaultContacts;
+};
+
+const actionContact = (contacts, action) => {
+  switch (action.type) {
+    case 'ADD_CONTACT':
+      return [...contacts, action.contact];
+    case 'DELETE_CONTACT':
+      return contacts.filter(contact => contact.id !== action.id);
+    default:
+      return contacts;
+  }
+};
+
 const App = () => {
-  const [contacts, setContacts] = useLocalStorage(KEY, defaultContacts);
+  // const [contacts, setContacts] = useLocalStorage(KEY, defaultContacts);
+  const [contacts, dispatch] = useReducer(
+    actionContact,
+    {
+      contacts: [],
+    },
+    initContactList
+  );
+
   const [filter, setFilter] = useState('');
+
+  useEffect(() => {
+    window.localStorage.setItem(KEY, JSON.stringify(contacts));
+  }, [contacts]);
 
   // Add contact
   const handleAddContact = contact => {
@@ -32,13 +63,15 @@ const App = () => {
       return;
     }
 
-    setContacts(contacts => [...contacts, contact]);
+    // setContacts(contacts => [...contacts, contact]);
+    dispatch({ type: 'ADD_CONTACT', contact });
     Notify.success(`Add contact ${name}`);
   };
 
   // Delete contact
   const handleDeleteContact = id => {
-    setContacts(contacts => contacts.filter(contact => contact.id !== id));
+    // setContacts(contacts => contacts.filter(contact => contact.id !== id));
+    dispatch({ type: 'DELETE_CONTACT', id });
     Notify.info(`Delete contact ${id}`);
   };
 
