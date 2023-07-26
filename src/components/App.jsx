@@ -8,6 +8,7 @@ import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
 
+import { Title, ListTitle } from './App.styled';
 import useLocalStorage from 'hooks/useLocalStorage';
 
 window.document.title = 'HW-4 Phonebook';
@@ -52,23 +53,9 @@ const App = () => {
 
   return (
     <Container className="container" maxWidth="sm" sx={{ mt: 2 }}>
-      <Typography
-        variant="h1"
-        gutterBottom
-        align="center"
-        sx={{ fontSize: '40px', fontWeight: 700, mb: 2 }}
-      >
-        Phonebook
-      </Typography>
+      <Title>Phonebook</Title>
       <ContactForm onAddContact={handleAddContact} />
-      <Typography
-        variant="h2"
-        gutterBottom
-        align="center"
-        sx={{ fontSize: '30px', fontWeight: 700, mb: 2 }}
-      >
-        Contacts
-      </Typography>
+      <ListTitle>Contacts</ListTitle>
       <Filter onFilter={e => setFilter(e.target.value)} filter={filter} />
       <ContactList
         contacts={contactFilter(contacts)}
