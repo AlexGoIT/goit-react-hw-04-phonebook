@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
